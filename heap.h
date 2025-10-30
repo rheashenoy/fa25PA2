@@ -28,14 +28,15 @@ struct MinHeap {
     }
 
     void upheap(int pos, int weightArr[]) {
-        int i = data[pos];
+        int i = pos;
         while (i > 0) {
-            int parent = (i - 1) / 2;
-            if (weightArr[i] > weightArr[parent]) break;
+            int j = data[pos];
+            int parent = (i -1) / 2;
+            if (weightArr[j] > weightArr[data[parent]]) break;
             else {
-                int tmp = weightArr[i];
-                weightArr[i] = weightArr[parent];
-                weightArr[parent] = tmp;
+                int tmp = data[i];
+                data[i] = data[parent];
+                data[parent] = tmp;
             }
             i = parent;
         }
