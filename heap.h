@@ -24,17 +24,22 @@ struct MinHeap {
         int min = data[0];
         data[0] = data[size - 1];
         downheap(0, weightArr);
-        return min; // placeholder
+        return min;
     }
 
     void upheap(int pos, int weightArr[]) {
-        int i = pos;
-        if (weightArr[i] < weightArr[(i-1)/2]) {
-            int tmp = weightArr[i];
-            weightArr[i] = weightArr[(i-1)/2];
-            weightArr[(i-1)/2] = tmp;
-            upheap(i, weightArr);
+        int i = data[pos];
+        while (i > 0) {
+            int parent = (i - 1) / 2;
+            if (weightArr[i] > weightArr[parent]) break;
+            else {
+                int tmp = weightArr[i];
+                weightArr[i] = weightArr[parent];
+                weightArr[parent] = tmp;
+            }
+            i = parent;
         }
+
     }
 
     void downheap(int pos, int weightArr[]) {
