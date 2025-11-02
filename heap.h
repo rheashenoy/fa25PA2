@@ -53,7 +53,7 @@ struct MinHeap {
 
             if (leftChild >= size) {break;}
             else {
-                if (weightArr[data[leftChild]] < weightArr[data[rightChild]]) {
+                if (weightArr[data[leftChild]] <= weightArr[data[rightChild]]) {
                     smallest = leftChild;
                 }
                 else {
