@@ -122,17 +122,18 @@ void generateCodes(int root, string codes[]) {
             if (code.empty()) {
                 code = "0";
             }
-            int letter = charArr[a];
+            int letter = charArr[a] - 'a';
             if (0 <= letter && letter <= 26) {
                 codes[letter] = code;
                 continue;
             }
         }
-        if (leftArr[a] != -1) {
-            s.push({leftArr[a], code + '0'});
-        }
+
         if (rightArr[a] != -1) {
             s.push({rightArr[a], code + '1'});
+        }
+        if (leftArr[a] != -1) {
+            s.push({leftArr[a], code + '0'});
         }
 
     }
