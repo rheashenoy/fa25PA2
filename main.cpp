@@ -105,11 +105,18 @@ int buildEncodingTree(int nextFree) {
 
     }
 
-    return heap.data[0]; // placeholder
+    return heap.data[0];
 }
 
 // Step 4: Use an STL stack to generate codes
 void generateCodes(int root, string codes[]) {
+    stack<pair<int, string>> s;
+    s.push(root, " ");
+    while (!s.empty()) {
+        pair<int, string> temp = s.top();
+        int a = temp.first;
+        string code = temp.second;
+    }
     // TODO:
     // Use stack<pair<int, string>> to simulate DFS traversal.
     // Left edge adds '0', right edge adds '1'.
