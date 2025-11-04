@@ -21,10 +21,11 @@ struct MinHeap {
     }
 
     int pop(int weightArr[]) {
+        if (size == 0) return -1;
         int min = data[0];
-        data[0] = data[size - 1];
-        downheap(0, weightArr);
         size--;
+        data[0] = data[size];
+        downheap(0, weightArr);
         return min;
     }
 
@@ -33,7 +34,7 @@ struct MinHeap {
         while (i > 0) {
             int j = data[pos];
             int parent = (i -1) / 2;
-            if (weightArr[j] > weightArr[data[parent]]) break;
+            if (weightArr[j] >= weightArr[data[parent]]) break;
             else {
                 int tmp = data[i];
                 data[i] = data[parent];
@@ -50,25 +51,21 @@ struct MinHeap {
             int j = data[i];
             int leftChild = (2 * i) + 1;
             int rightChild = (2 * i) + 2;
-            int smallest;
+            int smallest = i;
 
-            if (leftChild >= size) {break;}
-            else {
-                if (weightArr[data[leftChild]] <= weightArr[data[rightChild]]) {
+
+                if (leftChild < size && (weightArr[data[leftChild]] <= weightArr[data[smallest]])) {
                     smallest = leftChild;
                 }
-                else {
+                if (rightChild < size && (weightArr[data[rightChild]] <= weightArr[data[smallest]])) {
                     smallest = rightChild;
                 }
 
-                if (weightArr[data[i]] < weightArr[data[smallest]]) { break;}
-                else {
+                if (smallest == i) { break;}
                     int tmp = data[i];
                     data[i] = data[smallest];
                     data[smallest] = tmp;
-                }
                 i = smallest;
-            }
         }
 
     }
