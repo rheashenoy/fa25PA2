@@ -111,7 +111,7 @@ int buildEncodingTree(int nextFree) {
 // Step 4: Use an STL stack to generate codes
 void generateCodes(int root, string codes[]) {
     stack<pair<int, string>> s;
-    s.push({root, " "});
+    s.push({root, ""});
     while (!s.empty()) {
         pair<int, string> temp = s.top();
         int a = temp.first;
@@ -122,8 +122,9 @@ void generateCodes(int root, string codes[]) {
             if (code.empty()) {
                 code = "0";
             }
-            else {
-                codes[a] = code;
+            int letter = charArr[a];
+            if (0 <= letter && letter <= 26) {
+                codes[letter] = code;
                 continue;
             }
         }
